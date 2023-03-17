@@ -23,15 +23,15 @@ const _bntTextPause = "PAUSAR POMODORO";
 const _bntTextReset = "REINICIAR";
 
 class _HomeState extends State<Home> {
+  int remainingTime = defaultTime;
+  String mainBtnText = _bntTextStart;
+  PomodoroStatus pomodoroStatus = PomodoroStatus.pausedPomodoro;
+  Timer? _timer;
+  int pomodoroCycle = 0;
+  int setNum = 0;
+
   @override
   Widget build(BuildContext context) {
-    int remainingTime = defaultTime;
-    String mainBtnText = _bntTextStart;
-    PomodoroStatus pomodoroStatus = PomodoroStatus.pausedPomodoro;
-    Timer _timer;
-    int pomodoroCycle = 0;
-    int setNum = 0;
-
     return Scaffold(
       appBar: AppBar(
         title: Text("PomoTool App"),
@@ -68,25 +68,25 @@ class _HomeState extends State<Home> {
                       _secondsToFormatedString(remainingTime),
                       style: TextStyle(fontSize: 36, color: Colors.white),
                     ),
-                    progressColor: Colors.red,
+                    progressColor: statusColor[pomodoroStatus],
                   ),
                   SizedBox(
                     height: 16,
                   ),
                   Text(
-                    "Status Pomodoro",
+                    statusDescription[pomodoroStatus]!,
                     style: TextStyle(color: Colors.white),
                   ),
                 ],
               ),
             ),
             CustomButton(
-              onTap: () {},
-              text: "Iniciar",
+              onTap: _mainButtonPressed,
+              text: mainBtnText,
             ),
             CustomButton(
               onTap: () {},
-              text: "Resetar",
+              text: _bntTextReset,
             ),
           ]),
         ),
@@ -106,5 +106,76 @@ class _HomeState extends State<Home> {
     }
 
     return "$roundedMinutes:$remainingSecondsFormated";
+  }
+
+  _mainButtonPressed() {
+    switch (pomodoroStatus) {
+      case PomodoroStatus.pausedPomodoro:
+        _startPomodoroCountdown();
+        break;
+      case PomodoroStatus.runningPomodoro:
+        // TODO: Handle this case.
+        break;
+      case PomodoroStatus.runningShortBreak:
+        // TODO: Handle this case.
+        break;
+      case PomodoroStatus.pausedShortBreak:
+        // TODO: Handle this case.
+        break;
+      case PomodoroStatus.runningLongBreak:
+        // TODO: Handle this case.
+        break;
+      case PomodoroStatus.pausedLongBreak:
+        // TODO: Handle this case.
+        break;
+      case PomodoroStatus.setFinished:
+        // TODO: Handle this case.
+        break;
+    }
+  }
+
+  _startPomodoroCountdown() {
+    pomodoroStatus = PomodoroStatus.runningPomodoro;
+    _cancelTimer();
+
+    _timer = Timer.periodic(
+        Duration(seconds: 1),
+        (timer) => {
+              if (remainingTime > 0)
+                {
+                  setState(() {
+                    remainingTime--;
+                    mainBtnText = _bntTextPause;
+                  })
+                }
+              else
+                {
+                  //todo playsound()
+                  pomodoroCycle++,
+                  _cancelTimer(),
+                  if (pomodoroCycle % pomodoroPerSet == 0)
+                    {
+                      pomodoroStatus = PomodoroStatus.pausedLongBreak,
+                      setState(() {
+                        remainingTime = longBreak;
+                        mainBtnText = _bntTextStartLongBreak;
+                      }),
+                    }
+                  else
+                    {
+                      pomodoroStatus = PomodoroStatus.pausedShortBreak,
+                      setState(() {
+                        remainingTime = shortBreak;
+                        mainBtnText = _bntTextStartShortBreak;
+                      })
+                    }
+                }
+            });
+  }
+
+  _cancelTimer() {
+    if (_timer != null) {
+      _timer?.cancel();
+    }
   }
 }
