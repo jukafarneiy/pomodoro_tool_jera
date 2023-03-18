@@ -1,20 +1,19 @@
 import "package:flutter/material.dart";
 import "package:pomodoro_tool_jera/models/pomodoro_status.dart";
 
-const defaultTime = 25 * 60;
-const shortBreak = 5 * 60;
-const longBreak = 10 * 60;
+const defaultTime = 3;
+const shortBreak = 2;
+const longBreak = 5;
 const pomodoroPerSet = 4;
 
 const Map<PomodoroStatus, String> statusDescription = {
   PomodoroStatus.runningPomodoro: "Pomodoro foi iniciado, hora de focar!",
-  PomodoroStatus.pausedPomodoro: "Pronto para iniciar uma série Pomodoro?",
+  PomodoroStatus.pausedPomodoro: "Vamos iniciar um Pomodoro?",
   PomodoroStatus.runningShortBreak: "Pausa curta iniciada, hora de relaxar!",
   PomodoroStatus.pausedShortBreak: "Vamos iniciar uma pequena pausa?",
   PomodoroStatus.runningLongBreak: "Pausa longa iniciada, hora de relaxar!",
   PomodoroStatus.pausedLongBreak: "Sugerimos uma pausa mais longa!",
-  PomodoroStatus.setFinished:
-      "Parabéns, você merece uma pausa mais longa, podemos iniciá-la?",
+  PomodoroStatus.setFinished: "Você completou 4 séries, descanse mais 10min!",
 };
 
 const Map<PomodoroStatus, MaterialColor> statusColor = {
