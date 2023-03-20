@@ -1,16 +1,24 @@
-# pomodoro_tool_jera
+# PomoTool App
+Challenge for Developer Job at Jera.
 
-A new Flutter project.
+General Info: 
 
-## Getting Started
+My application presents a tool to help those who work with the pomodoro method.
 
-This project is a starting point for a Flutter application.
+Technology: 
 
-A few resources to get you started if this is your first Flutter project:
+This project is based on the Dart language, using Flutter as the framework.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Librarys:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+cupertino_icons: ^1.0.2
+
+percent_indicator: ^4.0.1
+
+audioplayers: ^3.0.1
+
+
+App Main Activity:
+
+![pomodoro_app](https://user-images.githubusercontent.com/104699938/226232943-38b1c4b2-d3f2-4dcf-8b17-b5e7c30c5c15.PNG)
+
