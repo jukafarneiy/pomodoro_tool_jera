@@ -20,5 +20,5 @@ audioplayers: ^3.0.1
 
 App Main Activity:
 
-![pomodoro_app](https://user-images.githubusercontent.com/104699938/226232943-38b1c4b2-d3f2-4dcf-8b17-b5e7c30c5c15.PNG)
+![pomodoro_app](https://user-images.githubusercontent.com/104699938/226233413-07576536-7b22-4d77-bdc0-1dfff098a888.PNG)
 
