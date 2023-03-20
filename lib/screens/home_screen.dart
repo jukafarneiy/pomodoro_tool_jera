@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:pomodoro_tool_jera/models/pomodoro_status.dart';
@@ -23,6 +24,7 @@ const _bntTextPause = "PAUSAR POMODORO";
 const _bntTextReset = "REINICIAR";
 
 class _HomeState extends State<Home> {
+  final player = AudioPlayer();
   int remainingTime = defaultTime;
   String mainBtnText = _bntTextStart;
   PomodoroStatus pomodoroStatus = PomodoroStatus.pausedPomodoro;
@@ -136,7 +138,7 @@ class _HomeState extends State<Home> {
         totalTime = longBreak;
         break;
       case PomodoroStatus.setFinished:
-        totalTime = longBreak;
+        totalTime = defaultTime;
         break;
     }
     double percentage = (totalTime - remainingTime) / totalTime;
@@ -186,7 +188,7 @@ class _HomeState extends State<Home> {
                 }
               else
                 {
-                  //todo playsound()
+                  _playSound(),
                   pomodoroSet++,
                   _cancelTimer(),
                   if (pomodoroSet % pomodoroPerSet == 0)
@@ -226,7 +228,6 @@ class _HomeState extends State<Home> {
                 }
               else
                 {
-                  //todo play sound
                   _playSound(),
                   remainingTime = defaultTime,
                   _cancelTimer(),
@@ -255,7 +256,6 @@ class _HomeState extends State<Home> {
                 }
               else
                 {
-                  //todo play sound
                   _playSound(),
                   remainingTime = defaultTime,
                   _cancelTimer(),
@@ -314,6 +314,6 @@ class _HomeState extends State<Home> {
   }
 
   _playSound() {
-    print("play sound");
+    player.play(AssetSource('timer_sound.mp3'));
   }
 }

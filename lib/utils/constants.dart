@@ -13,7 +13,7 @@ const Map<PomodoroStatus, String> statusDescription = {
   PomodoroStatus.pausedShortBreak: "Vamos iniciar uma pequena pausa?",
   PomodoroStatus.runningLongBreak: "Pausa longa iniciada, hora de relaxar!",
   PomodoroStatus.pausedLongBreak: "Sugerimos uma pausa mais longa!",
-  PomodoroStatus.setFinished: "Você completou 4 séries, descanse mais 10min!",
+  PomodoroStatus.setFinished: "Parabéns, você completou 4 séries, descanse!",
 };
 
 const Map<PomodoroStatus, MaterialColor> statusColor = {

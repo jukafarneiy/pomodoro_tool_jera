@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'PomoTool App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: Home(),
     );
